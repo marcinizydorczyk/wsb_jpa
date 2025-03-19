@@ -3,7 +3,7 @@ package com.jpacourse.persistance.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
-
+import java.util.List;
 @Entity
 @Table(name = "VISIT")
 public class VisitEntity {
@@ -16,6 +16,18 @@ public class VisitEntity {
 
 	@Column(nullable = false)
 	private LocalDateTime time;
+
+
+	@ManyToOne
+	@JoinColumn(name = "doctor_id")
+	private DoctorEntity doctor;
+
+	@ManyToOne
+	@JoinColumn(name = "patient_id")
+	private PatientEntity patient;
+
+	@OneToMany(mappedBy = "visit" , cascade = CascadeType.ALL)
+	private List<MedicalTreatmentEntity> medicalTreatments;
 
 	public Long getId() {
 		return id;

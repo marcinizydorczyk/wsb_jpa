@@ -29,6 +29,7 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
+
 	public Long getId() {
 		return id;
 	}
