@@ -53,4 +53,19 @@ public class VisitEntity {
 		this.time = time;
 	}
 
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
 }

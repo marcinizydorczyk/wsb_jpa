@@ -24,6 +24,8 @@ public class AddressEntity {
 
 	@OneToOne(mappedBy = "address")
 	private PatientEntity patient;
+
+
 	public Long getId() {
 		return id;
 	}
