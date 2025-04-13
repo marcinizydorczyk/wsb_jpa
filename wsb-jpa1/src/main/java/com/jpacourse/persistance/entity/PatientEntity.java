@@ -84,15 +84,4 @@ public class PatientEntity {
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
-	/*public void addVisit(VisitEntity visit) {
-		this.visits.add(visit);
-		visit.setPatient(this);
-	}
-
-	public void removeVisit(VisitEntity visit) {
-		this.visits.remove(visit);
-		visit.setPatient(null);
-	}
-*/
 }
