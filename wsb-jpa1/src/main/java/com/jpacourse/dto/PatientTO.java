@@ -3,6 +3,7 @@ package com.jpacourse.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
 public class PatientTO implements Serializable
 {
     private Long id;
@@ -12,6 +13,7 @@ public class PatientTO implements Serializable
     private String email;
     private String patientNumber;
     private LocalDate dateOfBirth;
+
 
 
     public Long getId() {

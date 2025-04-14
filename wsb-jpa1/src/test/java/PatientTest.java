@@ -25,7 +25,7 @@ public class PatientTest {
         entity.setDateOfBirth(LocalDate.of(1990, 5, 20));
 
         // when
-        PatientTO result = PatientMapper.mapToTo(entity);
+        PatientTO result = PatientMapper.mapToTO(entity);
 
         // then
         assertNotNull(result);
@@ -65,7 +65,7 @@ public class PatientTest {
     @Test
     void shouldReturnNullWhenEntityIsNull() {
         // when + then
-        assertNull(PatientMapper.mapToTo(null));
+        assertNull(PatientMapper.mapToTO(null));
     }
 
     @Test
