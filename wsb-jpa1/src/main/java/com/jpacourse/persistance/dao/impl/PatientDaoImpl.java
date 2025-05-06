@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public class PatientDaoImpl implements PatientDao {
@@ -50,4 +51,17 @@ public class PatientDaoImpl implements PatientDao {
 
         entityManager.merge(patient);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PatientEntity> findByLastName(String lastName) {
+        return entityManager.createQuery(
+                        "SELECT p FROM PatientEntity p WHERE p.lastName = :lastName", PatientEntity.class)
+                .setParameter("lastName", lastName)
+                .getResultList();
+    }
+    public PatientDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
 }
