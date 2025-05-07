@@ -12,7 +12,7 @@ INSERT INTO Patient (first_Name, last_Name, telephone_Number, email, patient_Num
 ('Kacper', 'Prusak', '511511005', 'kacper-prusakk@wp.pl', 'P202', '2001-02-09',3);
 
 INSERT INTO Visit (description, time, doctor_id, patient_id) VALUES
-('Wizyta dermatologiczna', '2025-04-05 10:00:00', 1, 1),
+('Wizy  a dermatologiczna', '2025-04-05 10:00:00', 1, 1),
 ('Konsultacja ortopedyczna', '2025-04-06 11:15:00', 2, 2);
 
 INSERT INTO Medical_Treatment (description, type, visit_id) VALUES

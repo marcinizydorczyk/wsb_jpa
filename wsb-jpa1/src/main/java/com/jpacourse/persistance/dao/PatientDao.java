@@ -10,5 +10,7 @@ public interface PatientDao {
     PatientEntity save(PatientEntity patient);
     PatientEntity findOne(Long id);
     List<PatientEntity> findByLastName(String lastName);
+    List<PatientEntity> findPatientsWithMoreThanXVisits(long numberOfVisits);
+
 
 }

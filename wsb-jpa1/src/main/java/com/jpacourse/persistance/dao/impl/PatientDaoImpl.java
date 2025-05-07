@@ -60,6 +60,15 @@ public class PatientDaoImpl implements PatientDao {
                 .setParameter("lastName", lastName)
                 .getResultList();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PatientEntity> findPatientsWithMoreThanXVisits(long numberOfVisits) {
+        return entityManager.createQuery(
+                        "SELECT p FROM PatientEntity p WHERE SIZE(p.visits) > :visitCount", PatientEntity.class)
+                .setParameter("visitCount", numberOfVisits)
+                .getResultList();
+    }
     public PatientDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
