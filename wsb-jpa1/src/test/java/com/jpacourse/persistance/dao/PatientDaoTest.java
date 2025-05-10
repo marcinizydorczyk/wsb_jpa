@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -57,4 +58,35 @@ public class PatientDaoTest {
         assertThat(visit.getDescription()).isEqualTo("Wizyta testowa");
         assertThat(visit.getDoctor().getFirstName()).isEqualTo("Anna");
     }
+
+    @Test
+    @Transactional
+    void shouldFindPatientsBornBeforeGivenDate() {
+        // given
+        PatientEntity oldPatient = new PatientEntity();
+        oldPatient.setFirstName("Stanisław");
+        oldPatient.setLastName("Pietrzyński");
+        oldPatient.setTelephoneNumber("111111111");
+        oldPatient.setPatientNumber("OLD001");
+        oldPatient.setDateOfBirth(LocalDate.of(1950, 1, 1));
+        patientDao.save(oldPatient);
+
+        PatientEntity youngPatient = new PatientEntity();
+        youngPatient.setFirstName("Ania");
+        youngPatient.setLastName("Nowak");
+        youngPatient.setTelephoneNumber("222222222");
+        youngPatient.setPatientNumber("NEW001");
+        youngPatient.setDateOfBirth(LocalDate.of(2000, 1, 1));
+        patientDao.save(youngPatient);
+
+        // when
+        List<PatientEntity> result = patientDao.findPatientsBornBefore(LocalDate.of(1990, 1, 1));
+
+        // then
+        assertThat(result).extracting(PatientEntity::getLastName)
+                .contains("Weteran")
+                .doesNotContain("Nowa");
+    }
+
+
 }

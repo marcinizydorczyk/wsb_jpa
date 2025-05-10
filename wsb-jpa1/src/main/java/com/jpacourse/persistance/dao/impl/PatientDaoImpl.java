@@ -9,6 +9,7 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -71,6 +72,15 @@ public class PatientDaoImpl implements PatientDao {
     }
     public PatientDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PatientEntity> findPatientsBornBefore(LocalDate date) {
+        return entityManager.createQuery(
+                        "SELECT p FROM PatientEntity p WHERE p.dateOfBirth < :date", PatientEntity.class)
+                .setParameter("date", date)
+                .getResultList();
     }
 
 }
